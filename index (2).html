@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shayan Zafar | Digital Marketing & Shopify Expert</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #111111;
+    --bg2: #181818;
+    --bg3: #1e1e1e;
+    --card: #222222;
+    --border: #2e2e2e;
+    --accent: #e8e8e8;
+    --accent2: #ffffff;
+    --muted: #888888;
+    --highlight: #c8f56a;
+    --highlight2: #a8e44a;
+    --text: #d4d4d4;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--highlight); border-radius: 2px; }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(17,17,17,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.3s, padding 0.3s;
+  }
+  nav.scrolled { border-color: var(--border); padding: 0.9rem 4rem; }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--highlight); }
+
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.82rem; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0;
+    width: 0; height: 1px; background: var(--highlight);
+    transition: width 0.25s;
+  }
+  .nav-links a:hover { color: var(--accent2); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-cta {
+    background: var(--highlight); color: #111;
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    font-size: 0.78rem; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: var(--highlight2); transform: translateY(-1px); }
+
+  .hamburger {
+    display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    background: none; border: none; padding: 4px;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px;
+    background: var(--accent2); transition: all 0.3s;
+  }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh; display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0.35;
+  }
+  .hero-glow {
+    position: absolute; top: -20%; right: -10%;
+    width: 700px; height: 700px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,245,106,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4rem;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(200,245,106,0.1); border: 1px solid rgba(200,245,106,0.3);
+    padding: 0.4rem 1rem; border-radius: 20px;
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--highlight); letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge::before {
+    content: ''; width: 7px; height: 7px; border-radius: 50%;
+    background: var(--highlight);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 7vw, 7rem);
+    line-height: 0.95; letter-spacing: 1px;
+    color: var(--accent2);
+    margin-bottom: 1.5rem;
+  }
+  .hero-title .line2 { color: var(--highlight); display: block; }
+
+  .hero-desc {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 520px; margin-bottom: 2.5rem;
+    line-height: 1.75;
+  }
+
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--highlight); color: #111;
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .btn-primary:hover {
+    background: var(--highlight2); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,245,106,0.25);
+  }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border); color: var(--text);
+    padding: 0.85rem 2rem; border-radius: 2px;
+    font-weight: 500; font-size: 0.85rem; letter-spacing: 1.5px;
+    text-transform: uppercase; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover {
+    border-color: var(--highlight); color: var(--highlight);
+    transform: translateY(-2px);
+  }
+
+  .hero-stats {
+    display: flex; flex-direction: column; gap: 2rem;
+    padding: 2rem; border: 1px solid var(--border);
+    border-radius: 4px; background: var(--card);
+    min-width: 180px;
+  }
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: var(--font-display); font-size: 2.8rem;
+    color: var(--highlight); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.72rem; color: var(--muted);
+    letter-spacing: 1px; text-transform: uppercase; margin-top: 0.3rem;
+  }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem 4rem; }
+
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  .section-tag {
+    font-family: var(--font-mono); font-size: 0.72rem;
+    color: var(--highlight); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.75rem;
+  }
+  .section-tag::before { content: '//'; opacity: 0.5; }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    color: var(--accent2); letter-spacing: 1px; line-height: 1.05;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ─── ABOUT ─── */
+  #about { background: var(--bg2); }
+
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+
+  .about-img-wrap {
+    position: relative;
+  }
+  .about-img-box {
+    width: 100%; aspect-ratio: 4/5; background: var(--card);
+    border: 1px solid var(--border); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .about-img-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(200,245,106,0.05) 0%, transparent 60%);
+  }
+  .about-img-placeholder {
+    font-family: var(--font-display); font-size: 1rem;
+    letter-spacing: 3px; color: var(--muted); text-align: center;
+    padding: 2rem;
+  }
+  .about-accent-line {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 60%; height: 60%; border: 1px solid rgba(200,245,106,0.2);
+    border-radius: 4px; z-index: -1;
+  }
+
+  .about-text p { color: var(--muted); line-height: 1.85; margin-bottom: 1.2rem; font-size: 1rem; }
+  .about-text p strong { color: var(--accent2); font-weight: 600; }
+
+  .about-skills {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2rem;
+  }
+  .skill-tag {
+    background: var(--bg3); border: 1px solid var(--border);
+    padding: 0.35rem 0.9rem; border-radius: 2px;
+    font-size: 0.75rem; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--muted); font-family: var(--font-mono);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--highlight); color: var(--highlight); }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--bg); }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5px; background: var(--border);
+    border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: var(--bg); padding: 2.2rem;
+    transition: background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0;
+    width: 3px; height: 0; background: var(--highlight);
+    transition: height 0.3s;
+  }
+  .service-card:hover { background: var(--card); }
+  .service-card:hover::before { height: 100%; }
+
+  .service-icon {
+    font-size: 1.8rem; margin-bottom: 1.2rem; display: block;
+  }
+  .service-num {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--muted); letter-spacing: 2px;
+    position: absolute; top: 1.5rem; right: 1.5rem;
+  }
+  .service-name {
+    font-family: var(--font-display); font-size: 1.25rem;
+    color: var(--accent2); letter-spacing: 1px; margin-bottom: 0.6rem;
+  }
+  .service-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+  /* ─── PORTFOLIO ─── */
+  #portfolio { background: var(--bg2); }
+
+  .portfolio-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem; margin-top: 3rem;
+  }
+
+  .portfolio-card {
+    border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+    background: var(--card); transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .portfolio-card:hover { transform: translateY(-4px); border-color: rgba(200,245,106,0.3); }
+
+  .portfolio-img {
+    width: 100%; aspect-ratio: 16/10; background: var(--bg3);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .portfolio-img::after {
+    content: attr(data-label);
+    font-family: var(--font-display); font-size: 1.4rem;
+    letter-spacing: 3px; color: var(--muted);
+  }
+  .portfolio-img .overlay {
+    position: absolute; inset: 0;
+    background: rgba(200,245,106,0.08);
+    opacity: 0; transition: opacity 0.3s;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+  }
+  .portfolio-card:hover .overlay { opacity: 1; }
+
+  .portfolio-info { padding: 1.4rem; }
+  .portfolio-cat {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--highlight); letter-spacing: 2px; text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .portfolio-title {
+    font-family: var(--font-display); font-size: 1.2rem;
+    color: var(--accent2); letter-spacing: 1px;
+  }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--bg); }
+
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start;
+  }
+
+  .contact-intro p { color: var(--muted); line-height: 1.8; margin-bottom: 2rem; }
+
+  .contact-methods { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-method {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1.2rem 1.5rem; background: var(--card);
+    border: 1px solid var(--border); border-radius: 3px;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .contact-method:hover { border-color: var(--highlight); transform: translateX(4px); }
+  .contact-method-icon {
+    font-size: 1.4rem; width: 42px; height: 42px;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg3); border-radius: 3px; flex-shrink: 0;
+  }
+  .contact-method-label {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--muted); letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 0.2rem;
+  }
+  .contact-method-value { font-size: 0.95rem; color: var(--accent2); font-weight: 500; }
+
+  /* FORM */
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label {
+    font-family: var(--font-mono); font-size: 0.65rem;
+    color: var(--muted); letter-spacing: 1.5px; text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: var(--card); border: 1px solid var(--border);
+    color: var(--accent2); padding: 0.85rem 1rem;
+    border-radius: 3px; font-family: var(--font-body); font-size: 0.95rem;
+    outline: none; transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--highlight); }
+  .form-group select option { background: var(--card); }
+
+  .form-submit {
+    background: var(--highlight); color: #111;
+    border: none; padding: 1rem 2rem;
+    font-family: var(--font-body); font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase;
+    border-radius: 2px; cursor: pointer;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+  }
+  .form-submit:hover {
+    background: var(--highlight2); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(200,245,106,0.25);
+  }
+
+  /* ─── WHATSAPP FLOAT ─── */
+  .wa-float {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: #25d366; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem; text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    animation: waBounce 3s ease-in-out infinite;
+  }
+  .wa-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.5); }
+  @keyframes waBounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--bg2); border-top: 1px solid var(--border);
+    padding: 2rem 4rem; text-align: center;
+  }
+  footer p {
+    font-size: 0.8rem; color: var(--muted); letter-spacing: 0.5px;
+  }
+  footer span { color: var(--highlight); }
+
+  /* ─── FADE IN ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .fade-in-delay-1 { transition-delay: 0.1s; }
+  .fade-in-delay-2 { transition-delay: 0.2s; }
+  .fade-in-delay-3 { transition-delay: 0.3s; }
+  .fade-in-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE MENU ─── */
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(17,17,17,0.98); z-index: 99;
+    flex-direction: column; align-items: center; justify-content: center;
+    gap: 2.5rem;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    font-family: var(--font-display); font-size: 2rem;
+    letter-spacing: 3px; color: var(--accent2); text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--highlight); }
+  .mobile-close {
+    position: absolute; top: 1.5rem; right: 2rem;
+    background: none; border: none; color: var(--muted);
+    font-size: 1.8rem; cursor: pointer;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    nav { padding: 1.2rem 2rem; }
+    nav.scrolled { padding: 0.9rem 2rem; }
+    .nav-links { display: none; }
+    .nav-cta { display: none; }
+    .hamburger { display: flex; }
+    #hero { padding: 7rem 2rem 4rem; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-stats { flex-direction: row; justify-content: center; min-width: unset; }
+    section { padding: 5rem 2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    footer { padding: 2rem; }
+  }
+
+  @media (max-width: 600px) {
+    .hero-title { font-size: 3rem; }
+    .hero-stats { flex-direction: column; }
+    .services-grid { grid-template-columns: 1fr; background: none; border: none; gap: 1rem; }
+    .service-card { border: 1px solid var(--border); border-radius: 4px; }
+    .portfolio-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">SZ<span>.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://wa.me/923122836413" class="nav-cta" target="_blank">WhatsApp Me</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#about" class="menu-link">About</a>
+  <a href="#services" class="menu-link">Services</a>
+  <a href="#portfolio" class="menu-link">Portfolio</a>
+  <a href="#contact" class="menu-link">Contact</a>
+  <a href="https://wa.me/923122836413" target="_blank" style="color: var(--highlight);">WhatsApp →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge fade-in">Available for New Projects</div>
+      <h1 class="hero-title fade-in fade-in-delay-1">
+        Digital<br/>Marketing<br/><span class="line2">& Shopify</span><br/>Expert
+      </h1>
+      <p class="hero-desc fade-in fade-in-delay-2">
+        I help brands <strong style="color:var(--accent2)">scale revenue</strong>, dominate Meta & Google Ads, and build 
+        high-converting Shopify stores — with strategy backed by real results.
+      </p>
+      <div class="hero-btns fade-in fade-in-delay-3">
+        <a href="#contact" class="btn-primary">📞 Book a Free Call</a>
+        <a href="#portfolio" class="btn-outline">View Work →</a>
+      </div>
+    </div>
+    <div class="hero-stats fade-in fade-in-delay-4">
+      <div class="stat-item">
+        <div class="stat-num">3+</div>
+        <div class="stat-label">Years Exp</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Clients</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Dedicated</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-wrap fade-in">
+        <div class="about-img-box">
+          <div class="about-img-placeholder">SHAYAN<br/>ZAFAR</div>
+        </div>
+        <div class="about-accent-line"></div>
+      </div>
+      <div class="about-text">
+        <div class="section-tag fade-in">About Me</div>
+        <h2 class="section-title fade-in">The Person Behind<br/>the Strategy</h2>
+        <div class="fade-in">
+          <p>I'm <strong>Shayan Zafar</strong> — a Digital Marketing & Shopify Expert passionate about helping businesses grow online through <strong>data-driven strategies and creative execution</strong>.</p>
+          <p>From <strong>Meta & Google Ads</strong> to building complete <strong>Shopify stores</strong>, I handle everything end-to-end. My approach is simple: treat every client's budget like my own money — strategic, careful, and fully results-focused.</p>
+          <p>Whether you need <strong>Facebook campaigns, e-commerce management</strong>, or a luxury product listing that converts — I bring the expertise to make it happen.</p>
+        </div>
+        <div class="about-skills fade-in fade-in-delay-1">
+          <span class="skill-tag">Meta Ads</span>
+          <span class="skill-tag">Google Ads</span>
+          <span class="skill-tag">Shopify</span>
+          <span class="skill-tag">E-commerce</span>
+          <span class="skill-tag">Social Media</span>
+          <span class="skill-tag">Product Research</span>
+          <span class="skill-tag">Content Design</span>
+          <span class="skill-tag">Reels</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-tag fade-in">What I Do</div>
+    <h2 class="section-title fade-in">Services Built for<br/>Real Results</h2>
+    <div class="services-grid">
+      <div class="service-card fade-in">
+        <span class="service-num">01</span>
+        <span class="service-icon">🎨</span>
+        <div class="service-name">Facebook Post Design</div>
+        <p class="service-desc">Eye-catching, brand-consistent Facebook post designs that stop the scroll and drive engagement with your audience.</p>
+      </div>
+      <div class="service-card fade-in fade-in-delay-1">
+        <span class="service-num">02</span>
+        <span class="service-icon">📱</span>
+        <div class="service-name">Instagram Post & Reels</div>
+        <p class="service-desc">Stunning Instagram posts and high-retention Reels designed to grow your followers and boost your brand presence.</p>
+      </div>
+      <div class="service-card fade-in fade-in-delay-2">
+        <span class="service-num">03</span>
+        <span class="service-icon">🎯</span>
+        <div class="service-name">Full Meta Ads Setup</div>
+        <p class="service-desc">Complete Facebook & Instagram ad campaign setup — targeting, creatives, copy, A/B testing, and ongoing optimization.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-num">04</span>
+        <span class="service-icon">🔍</span>
+        <div class="service-name">Google Ads Setup</div>
+        <p class="service-desc">Search, display, and shopping campaigns built to capture high-intent traffic and maximize your return on ad spend.</p>
+      </div>
+      <div class="service-card fade-in fade-in-delay-1">
+        <span class="service-num">05</span>
+        <span class="service-icon">🛒</span>
+        <div class="service-name">Shopify Store Design</div>
+        <p class="service-desc">Professional Shopify store setup with any theme — fully customized, conversion-optimized, and ready to sell.</p>
+      </div>
+      <div class="service-card fade-in fade-in-delay-2">
+        <span class="service-num">06</span>
+        <span class="service-icon">💎</span>
+        <div class="service-name">Luxury Product Listing</div>
+        <p class="service-desc">Premium product listings with compelling copy, professional imagery, and SEO optimization that commands higher prices.</p>
+      </div>
+      <div class="service-card fade-in">
+        <span class="service-num">07</span>
+        <span class="service-icon">📊</span>
+        <div class="service-name">E-commerce Management</div>
+        <p class="service-desc">Full e-commerce store management including inventory, orders, customer service, and marketing — all handled for you.</p>
+      </div>
+      <div class="service-card fade-in fade-in-delay-1">
+        <span class="service-num">08</span>
+        <span class="service-icon">🔬</span>
+        <div class="service-name">Product Research</div>
+        <p class="service-desc">In-depth market research to find winning products with high demand, low competition, and strong profit margins.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-inner">
+    <div class="section-tag fade-in">My Work</div>
+    <h2 class="section-title fade-in">Portfolio</h2>
+    <div class="portfolio-grid">
+      <div class="portfolio-card fade-in">
+        <div class="portfolio-img" data-label="PROJECT">
+          <div class="overlay">🔍</div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Meta Ads</div>
+          <div class="portfolio-title">Fashion Brand Campaign</div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in fade-in-delay-1">
+        <div class="portfolio-img" data-label="PROJECT">
+          <div class="overlay">🔍</div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Shopify Store</div>
+          <div class="portfolio-title">Luxury E-commerce Store</div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in fade-in-delay-2">
+        <div class="portfolio-img" data-label="PROJECT">
+          <div class="overlay">🔍</div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Google Ads</div>
+          <div class="portfolio-title">Real Estate Lead Gen</div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in">
+        <div class="portfolio-img" data-label="PROJECT">
+          <div class="overlay">🔍</div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Social Media</div>
+          <div class="portfolio-title">Brand Identity Design</div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in fade-in-delay-1">
+        <div class="portfolio-img" data-label="PROJECT">
+          <div class="overlay">🔍</div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Instagram Reels</div>
+          <div class="portfolio-title">Viral Content Strategy</div>
+        </div>
+      </div>
+      <div class="portfolio-card fade-in fade-in-delay-2">
+        <div class="portfolio-img" data-label="PROJECT">
+          <div class="overlay">🔍</div>
+        </div>
+        <div class="portfolio-info">
+          <div class="portfolio-cat">Product Research</div>
+          <div class="portfolio-title">Winning Product Launch</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-intro fade-in">
+        <div class="section-tag">Get In Touch</div>
+        <h2 class="section-title">Let's Grow Your<br/>Business Together</h2>
+        <p>Got a business you want to scale? Reach out and let's talk strategy — no commitment, just a real conversation about your goals.</p>
+        <div class="contact-methods">
+          <a href="tel:03122836413" class="contact-method">
+            <div class="contact-method-icon">📞</div>
+            <div>
+              <div class="contact-method-label">Phone / Call</div>
+              <div class="contact-method-value">0312-2836413</div>
+            </div>
+          </a>
+          <a href="mailto:shayanzafar154@gmail.com" class="contact-method">
+            <div class="contact-method-icon">📧</div>
+            <div>
+              <div class="contact-method-label">Email</div>
+              <div class="contact-method-value">shayanzafar154@gmail.com</div>
+            </div>
+          </a>
+          <a href="https://wa.me/923122836413" target="_blank" class="contact-method">
+            <div class="contact-method-icon">💬</div>
+            <div>
+              <div class="contact-method-label">WhatsApp</div>
+              <div class="contact-method-value">+92 312-2836413</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="fade-in fade-in-delay-1">
+        <div class="contact-form" id="contactForm">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" placeholder="John Doe" id="f-name"/>
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" placeholder="you@example.com" id="f-email"/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp</label>
+            <input type="tel" placeholder="+92 300 0000000" id="f-phone"/>
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select id="f-service">
+              <option value="">Select a Service</option>
+              <option>Facebook Post Design</option>
+              <option>Instagram Post & Reels Design</option>
+              <option>Full Meta Ads Setup</option>
+              <option>Google Ads Setup</option>
+              <option>Shopify Store Design</option>
+              <option>Luxury Product Listing</option>
+              <option>E-commerce Management</option>
+              <option>Product Research</option>
+              <option>Full Package — All Services</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="4" placeholder="Tell me about your business and goals..." id="f-msg"></textarea>
+          </div>
+          <button class="form-submit" id="submitBtn" onclick="handleSubmit()">
+            📩 Send Message
+          </button>
+          <div id="formMsg" style="display:none; margin-top:0.8rem; font-size:0.85rem; color:var(--highlight); font-family:var(--font-mono); letter-spacing:1px;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>Shayan Zafar</span> · Digital Marketing & Shopify Expert · Pakistan</p>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/923122836413" class="wa-float" target="_blank" title="Chat on WhatsApp">
+  <svg width="26" height="26" viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 3C8.82 3 3 8.82 3 16c0 2.68.76 5.19 2.08 7.33L3 29l5.88-2.03A12.93 12.93 0 0016 29c7.18 0 13-5.82 13-13S23.18 3 16 3zm6.47 18.1c-.28.78-1.62 1.5-2.24 1.6-.58.09-1.3.13-2.1-.13-.49-.16-1.11-.37-1.91-.73-3.36-1.45-5.56-4.83-5.73-5.06-.17-.22-1.35-1.8-1.35-3.43 0-1.63.85-2.44 1.16-2.77.3-.33.66-.42.88-.42.22 0 .44.01.63.01.2.01.48-.07.75.57.28.65.95 2.31 1.03 2.48.09.17.14.36.03.58-.11.22-.17.36-.33.55-.17.2-.35.44-.5.59-.17.17-.34.35-.15.68.2.33.88 1.45 1.9 2.35 1.3 1.16 2.4 1.53 2.73 1.7.33.17.53.14.72-.08.2-.22.85-1 1.07-1.34.22-.33.44-.28.74-.17.3.11 1.92.9 2.25 1.07.33.17.55.25.63.39.09.14.09.8-.19 1.58z"/>
+  </svg>
+</a>
+
+<script>
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+
+  hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+  mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  document.querySelectorAll('.menu-link').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Immediately trigger hero fade-ins
+  document.querySelectorAll('#hero .fade-in').forEach(el => {
+    setTimeout(() => el.classList.add('visible'), 100);
+  });
+
+  // Form submission → WhatsApp redirect
+  function handleSubmit() {
+    const name = document.getElementById('f-name').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const phone = document.getElementById('f-phone').value.trim();
+    const service = document.getElementById('f-service').value;
+    const msg = document.getElementById('f-msg').value.trim();
+    const formMsg = document.getElementById('formMsg');
+
+    if (!name || !email) {
+      formMsg.style.display = 'block';
+      formMsg.style.color = '#ff6b6b';
+      formMsg.textContent = '⚠ Please enter your name and email.';
+      return;
+    }
+
+    const waText = `Hi Shayan! 👋\n\n*Name:* ${name}\n*Email:* ${email}\n*Phone:* ${phone || 'N/A'}\n*Service:* ${service || 'Not specified'}\n*Message:* ${msg || 'N/A'}`;
+    const waURL = `https://wa.me/923122836413?text=${encodeURIComponent(waText)}`;
+
+    formMsg.style.display = 'block';
+    formMsg.style.color = 'var(--highlight)';
+    formMsg.textContent = '✓ Opening WhatsApp...';
+
+    setTimeout(() => window.open(waURL, '_blank'), 400);
+  }
+
+  // Enter key on form
+  document.querySelectorAll('.contact-form input, .contact-form select, .contact-form textarea')
+    .forEach(el => el.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && e.ctrlKey) handleSubmit();
+    }));
+</script>
+</body>
+</html>
